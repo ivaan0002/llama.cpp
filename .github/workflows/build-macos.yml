@@ -17,7 +17,7 @@ jobs:
         cd build
         cmake .. -DLLAMA_BUILD_EXAMPLES=ON
 
-    - name: Build main
+    - name: Build examples/main
       run: |
         cd build
         cmake --build . --target main --config Release
