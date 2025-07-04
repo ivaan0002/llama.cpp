@@ -12,22 +12,21 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Install dependencies
-      run: |
-        brew install cmake
+      run: brew install cmake
 
     - name: Configure
       run: |
-        mkdir build && cd build
-        cmake ..
+        mkdir build
+        cd build
+        cmake .. -DLLAMA_BUILD_EXAMPLES=ON
 
-    - name: Build
+    - name: Build 'main' only
       run: |
         cd build
-        cmake --build . --config Release
+        cmake --build . --target main --config Release
 
-    - name: Upload binary
+    - name: Upload main binary
       uses: actions/upload-artifact@v4
       with:
         name: main-macos
-        path: build/main
-
+        path: build/bin/main
