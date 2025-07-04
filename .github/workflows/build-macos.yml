@@ -11,23 +11,18 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Install dependencies
-      run: |
-        brew update
-        brew install cmake
-
     - name: Configure
       run: |
         mkdir build
         cd build
-        cmake .. -DLLAMA_BUILD_EXAMPLES=ON
+        /usr/bin/cmake .. -DLLAMA_BUILD_EXAMPLES=ON
 
-    - name: Build 'main'
+    - name: Build main
       run: |
         cd build
-        cmake --build . --target main --config Release
+        /usr/bin/cmake --build . --target main --config Release
 
-    - name: Upload main binary
+    - name: Upload binary
       uses: actions/upload-artifact@v4
       with:
         name: main-macos
