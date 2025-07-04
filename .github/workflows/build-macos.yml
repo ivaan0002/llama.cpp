@@ -12,7 +12,9 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Install dependencies
-      run: brew install cmake
+      run: |
+        brew update
+        brew install cmake
 
     - name: Configure
       run: |
@@ -20,7 +22,7 @@ jobs:
         cd build
         cmake .. -DLLAMA_BUILD_EXAMPLES=ON
 
-    - name: Build 'main' only
+    - name: Build 'main'
       run: |
         cd build
         cmake --build . --target main --config Release
