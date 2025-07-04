@@ -15,14 +15,14 @@ jobs:
       run: |
         mkdir build
         cd build
-        /usr/bin/cmake .. -DLLAMA_BUILD_EXAMPLES=ON
+        cmake .. -DLLAMA_BUILD_EXAMPLES=ON
 
     - name: Build main
       run: |
         cd build
-        /usr/bin/cmake --build . --target main --config Release
+        cmake --build . --target main --config Release
 
-    - name: Upload binary
+    - name: Upload main binary
       uses: actions/upload-artifact@v4
       with:
         name: main-macos
